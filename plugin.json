@@ -1,0 +1,12 @@
+{
+    "ID":"D5402D027F5A4FB6A616AC0C58CD2FFF",
+    "ActionKeyword":"stash",
+    "Name":"Stash Plugin",
+    "Description":"Stash Plugin",
+    "Author":"dstiert",
+    "Version":"1.0",
+    "Language":"csharp",
+    "Website":"http://www.orbx.net/",
+    "ExecuteFileName":"Wox.Stash.dll",
+    "IcoPath":"images\\icon.png"
+}
