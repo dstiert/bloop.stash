@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Dto\PagedResult.cs" />
     <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\Repo.cs" />
+    <Compile Include="StashClient.cs" />
     <Compile Include="StashPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

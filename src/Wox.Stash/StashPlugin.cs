@@ -1,25 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
-using RestSharp;
 using Wox.Plugin;
-using Wox.Stash.Dto;
-using Wox.Stash.Model;
 
 namespace Wox.Stash
 {
     public class StashPlugin : IPlugin, ISettingProvider
     {
-        private IRestClient client;
+        private StashClient _client;
+        private IPublicAPI _api;
 
         public List<Result> Query(Query query)
         {
-            var request = new RestRequest("/rest/api/1.0/projects");
-            var result = this.client.Execute<PagedResult<Project>>(request);
-
-            return result.Data.values.Select(p => new Result
+            return _client.GetProjects().Select(p => new Result
             {
-                Action = ctx => false,
+                Action = ctx =>
+                {
+                    _api.ChangeQuery(query.RawQuery + " " + p.key, true);
+                    return false;
+                },
                 Title = p.key,
                 SubTitle = p.name
             }).ToList();
@@ -27,7 +26,8 @@ namespace Wox.Stash
 
         public void Init(PluginInitContext context)
         {
-            this.client = new RestClient("https://mcpstash.cimpress.net/");
+            _client = new StashClient("https://mcpstash.cimpress.net/");
+            _api = context.API;
         }
 
         public Control CreateSettingPanel()
