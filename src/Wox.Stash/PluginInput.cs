@@ -3,13 +3,13 @@ using Wox.Plugin;
 
 namespace Wox.Stash
 {
-    public class Command
+    public class PluginInput
     {
-        private Command() {}
+        private PluginInput() {}
 
-        public static Command Parse(Query query)
+        public static PluginInput Parse(Query query)
         {
-            var cmd = new Command();
+            var cmd = new PluginInput();
             if(query.ActionParameters.Count > 0)
             {
                 var projRepo = query.ActionParameters[0].Split('/');
@@ -22,6 +22,11 @@ namespace Wox.Stash
                     cmd.RepoSlug = projRepo[1];
                 }
             }
+
+            if(query.ActionParameters.Count > 1)
+            {
+                cmd.CommandName = query.ActionParameters[1];
+            }
             return cmd;
         }
 
@@ -29,6 +34,6 @@ namespace Wox.Stash
 
         public string RepoSlug { get; set; }
 
-        public CommandType? Operation { get; set; }
+        public string CommandName { get; set; }
     }
 }

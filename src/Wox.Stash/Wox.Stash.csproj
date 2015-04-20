@@ -51,11 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
+    <Compile Include="Commands\CommandAttribute.cs" />
+    <Compile Include="Commands\GoToCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="PluginInput.cs" />
     <Compile Include="CommandType.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="Dto\PagedResult.cs" />
-    <Compile Include="Model\CloneLink.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Repo.cs" />
@@ -77,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

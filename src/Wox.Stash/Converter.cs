@@ -1,4 +1,5 @@
 ﻿using Wox.Plugin;
+using Wox.Stash.Commands;
 using Wox.Stash.Model;
 
 namespace Wox.Stash
@@ -41,6 +42,19 @@ namespace Wox.Stash
                 Title = repo.Name,
                 SubTitle = repo.Slug,
                 IcoPath = "images\\icon.png"
+            };
+        }
+
+        public Result ToResult(ICommand cmd, Repo repo)
+        {
+            return new Result
+            {
+                Action = ctx =>
+                    {
+                        cmd.Execute(repo);
+                        return true;
+                    },
+                Title = cmd.Name
             };
         }
     }

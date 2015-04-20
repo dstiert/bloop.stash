@@ -5,6 +5,7 @@ using System;
 using Wox.Plugin;
 using Wox.Stash.Settings;
 using System.IO;
+using Wox.Stash.Commands;
 
 namespace Wox.Stash
 {
@@ -13,6 +14,7 @@ namespace Wox.Stash
         private Converter _converter;
         private StashClient _client;
         private IPublicAPI _api;
+        private IList<ICommand> _commands;
 
         public static string ActionKeyword;
 
@@ -25,7 +27,7 @@ namespace Wox.Stash
 
             try
             {
-                var cmd = Command.Parse(query);
+                var cmd = PluginInput.Parse(query);
 
                 var projects = _client.GetProjects();
 
@@ -46,12 +48,14 @@ namespace Wox.Stash
                     return repos.Select(_converter.ToResult).ToList();
                 }
 
-                if (!repos.Any(r => r.Slug.ToLower() == cmd.RepoSlug.ToLower()))
+                var repo = repos.SingleOrDefault(r => r.Slug == cmd.RepoSlug);
+
+                if (repo != null)
                 {
-                    return repos.Where(r => r.Slug.ToLower().Contains(cmd.RepoSlug.ToLower())).Select(_converter.ToResult).ToList();
+                    return _commands.Select(c => _converter.ToResult(c, repo)).ToList();
                 }
 
-                return Enum.GetNames(typeof(CommandType)).Select(ct => new Result { Title = ct }).ToList();
+                return repos.Where(r => r.Slug.ToLower().Contains(cmd.RepoSlug.ToLower())).Select(_converter.ToResult).ToList();
             }
             catch(Exception e)
             {
@@ -62,6 +66,7 @@ namespace Wox.Stash
         public void Init(PluginInitContext context)
         {
             PluginSettings.LoadSettings(Path.Combine(context.CurrentPluginMetadata.PluginDirectory, "settings.json"));
+            _commands = GetCommandList();
             PluginSettings.Instance.SettingsChanged = OnSettingsChanged;
             _client = new StashClient(PluginSettings.Instance.StashUrl);
             _api = context.API;
@@ -87,6 +92,16 @@ namespace Wox.Stash
                     SubTitle = "Configure Stash Plugin",
                     IcoPath = "images\\icon.png"
                 }}.ToList();
+        }
+
+        private List<ICommand> GetCommandList()
+        {
+            return System.Reflection.Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.GetCustomAttributes(typeof(CommandAttribute), false).Any())
+                .Select(t => Activator.CreateInstance(t))
+                .Cast<ICommand>()
+                .ToList();
         }
     }
 }
