@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RestSharp;
 using Wox.Stash.Dto;
 using Wox.Stash.Model;
+using System.Net;
 
 namespace Wox.Stash
 {
@@ -17,14 +19,48 @@ namespace Wox.Stash
         public List<Project> GetProjects()
         {
             var request = new RestRequest("/rest/api/1.0/projects", Method.GET);
-            return _client.Execute<PagedResult<Project>>(request).Data.values;
+            return ExecuteRequest<PagedResult<Project>>(request).Data.values;
         }
 
         public List<Repo> GetRepos(string projectKey)
         {
             var request = new RestRequest("/rest/api/1.0/projects/{projectKey}/repos", Method.GET);
-            request.AddParameter("projectKey", projectKey);
-            return _client.Execute<PagedResult<Repo>>(request).Data.values;
+            request.AddUrlSegment("projectKey", projectKey);
+            return ExecuteRequest<PagedResult<Repo>>(request).Data.values;
+        }
+
+        private IRestResponse<T> ExecuteRequest<T>(IRestRequest request) where T : new()
+        {
+            var response = this._client.Execute<T>(request);
+            this.ProcessResponse(response);
+            return response;
+        }
+
+        private IRestResponse ExecuteRequest(IRestRequest request)
+        {
+            var response = this._client.Execute(request);
+            this.ProcessResponse(response);
+            return response;
+        }
+
+        private void ProcessResponse(IRestResponse response)
+        {
+            switch (response.ResponseStatus)
+            {
+                case ResponseStatus.None:
+                case ResponseStatus.Aborted:
+                case ResponseStatus.Error:
+                    throw new Exception("Non-HTTP error contacting stash", response.ErrorException);
+                case ResponseStatus.TimedOut:
+                    throw new TimeoutException("Connection to stash timed out.");
+                case ResponseStatus.Completed:
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return;
+                    }
+
+                    throw new Exception(string.Format("Stash request failed. HTTP {0} Content: {1}", response.StatusCode, response.Content));
+            }
         }
 
     }
