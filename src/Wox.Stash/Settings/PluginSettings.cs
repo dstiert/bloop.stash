@@ -6,9 +6,10 @@ namespace Wox.Stash.Settings
 {
     public class PluginSettings
     {
-        private static JsonSerializer Serializer = new JsonSerializer();
+        private static readonly JsonSerializer Serializer = new JsonSerializer();
         private string _path;
 
+        [JsonIgnore]
         public Action SettingsChanged;
 
         public static PluginSettings Instance { get; set; }

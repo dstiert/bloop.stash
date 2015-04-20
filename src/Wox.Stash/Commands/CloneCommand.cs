@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using System.IO;
 using Wox.Stash.Model;
 using Wox.Stash.Settings;
-using Wox.Plugin;
 
 namespace Wox.Stash.Commands
 {
@@ -11,12 +11,13 @@ namespace Wox.Stash.Commands
     {
         public string Name { get { return "Clone"; } }
 
-        public void Execute(Repo repo, IPublicAPI api)
+        public void Execute(Repo repo)
         {
-            api.ShellRun(string.Format("git clone {0} {1}",
-                repo.Links.Clone.Single(l => l.Name == PluginSettings.Instance.CloneMethod),
-                Path.Combine(PluginSettings.Instance.CloneDestination, repo.Slug)), false);
-            System.Diagnostics.Process.Start(repo.Links.Self[0].Href);
+            var command = string.Format("/C git clone {0} {1}",
+                repo.Links.Clone.Single(l => l.Name == PluginSettings.Instance.CloneMethod).Href,
+                Path.Combine(PluginSettings.Instance.CloneDestination, repo.Slug));
+
+            Process.Start("cmd.exe", command);
         }
     }
 }

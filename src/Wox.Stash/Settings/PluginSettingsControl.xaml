@@ -22,7 +22,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Label Content="Clone Destination:"/>
-            <TextBox Name="CloneDestination" Text="C:\git" VerticalAlignment="Center" Width="178" TextChanged="CloneDestination_TextChanged"/>
+            <TextBox Name="CloneDestination" VerticalAlignment="Center" Width="178" TextChanged="CloneDestination_TextChanged"/>
             <Button Name="BrowseButton" Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Click="BrowseButton_Click"/>
         </StackPanel>
     </Grid>

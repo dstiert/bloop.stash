@@ -51,7 +51,7 @@ namespace Wox.Stash
             {
                 Action = ctx =>
                     {
-                        cmd.Execute(repo, _api);
+                        cmd.Execute(repo);
                         return true;
                     },
                 Title = cmd.Name

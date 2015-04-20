@@ -56,7 +56,6 @@
     <Compile Include="Commands\GoToCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="PluginInput.cs" />
-    <Compile Include="CommandType.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="Dto\PagedResult.cs" />
     <Compile Include="Model\Link.cs" />
