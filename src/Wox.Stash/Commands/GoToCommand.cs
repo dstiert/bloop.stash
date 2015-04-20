@@ -1,4 +1,5 @@
 ﻿using Wox.Stash.Model;
+using Wox.Plugin;
 
 namespace Wox.Stash.Commands
 {
@@ -7,7 +8,7 @@ namespace Wox.Stash.Commands
     {
         public string Name { get { return "Go To"; } }
 
-        public void Execute(Repo repo)
+        public void Execute(Repo repo, IPublicAPI api)
         {
             System.Diagnostics.Process.Start(repo.Links.Self[0].Href);
         }
