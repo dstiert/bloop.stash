@@ -4,9 +4,9 @@
     "Name":"Stash Plugin",
     "Description":"Stash Plugin",
     "Author":"dstiert",
-    "Version":"1.0",
+    "Version":"1.0.0.0",
     "Language":"csharp",
-    "Website":"http://www.orbx.net/",
+    "Website":"https://bitbucket.org/dstiert/wox.stash",
     "ExecuteFileName":"Wox.Stash.dll",
     "IcoPath":"images\\icon.png"
 }
