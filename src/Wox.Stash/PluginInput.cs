@@ -1,5 +1,4 @@
-﻿using System;
-using Wox.Plugin;
+﻿using Wox.Plugin;
 
 namespace Wox.Stash
 {

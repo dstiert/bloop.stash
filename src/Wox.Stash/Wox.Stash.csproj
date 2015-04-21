@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachedStashClient.cs" />
     <Compile Include="Commands\CloneCommand.cs" />
     <Compile Include="Commands\CommandAttribute.cs" />
     <Compile Include="Commands\GoToCommand.cs" />

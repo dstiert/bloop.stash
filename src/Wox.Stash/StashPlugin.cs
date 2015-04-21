@@ -68,7 +68,7 @@ namespace Wox.Stash
             PluginSettings.LoadSettings(Path.Combine(context.CurrentPluginMetadata.PluginDirectory, "settings.json"));
             _commands = GetCommandList();
             PluginSettings.Instance.SettingsChanged = OnSettingsChanged;
-            _client = new StashClient(PluginSettings.Instance.StashUrl);
+            _client = new CachedStashClient(PluginSettings.Instance.StashUrl);
             _api = context.API;
             _converter = new Converter(context.CurrentPluginMetadata.ActionKeyword, _api);
         }
@@ -80,7 +80,7 @@ namespace Wox.Stash
 
         private void OnSettingsChanged()
         {
-            _client = new StashClient(PluginSettings.Instance.StashUrl);
+            _client = new CachedStashClient(PluginSettings.Instance.StashUrl);
         }
 
         private List<Result> OpenSettingsResult()

@@ -16,13 +16,13 @@ namespace Wox.Stash
             _client = new RestClient(endpoint);
         }
 
-        public List<Project> GetProjects()
+        public virtual List<Project> GetProjects()
         {
             var request = new RestRequest("/rest/api/1.0/projects", Method.GET);
             return ExecuteRequest<PagedResult<Project>>(request).Data.values;
         }
 
-        public List<Repo> GetRepos(string projectKey)
+        public virtual List<Repo> GetRepos(string projectKey)
         {
             var request = new RestRequest("/rest/api/1.0/projects/{projectKey}/repos", Method.GET);
             request.AddUrlSegment("projectKey", projectKey);
