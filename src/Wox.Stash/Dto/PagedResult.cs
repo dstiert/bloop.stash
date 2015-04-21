@@ -13,5 +13,7 @@ namespace Wox.Stash.Dto
         public List<T> values { get; set; }
 
         public int start { get; set; }
+
+        public int nextPageStart { get; set; }
     }
 }

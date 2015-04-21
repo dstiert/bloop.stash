@@ -13,7 +13,7 @@ namespace Wox.Stash
 
         public StashClient(string endpoint)
         {
-            _client = new RestClient("https://mcpstash.cimpress.net/");
+            _client = new RestClient(endpoint);
         }
 
         public List<Project> GetProjects()
@@ -31,6 +31,7 @@ namespace Wox.Stash
 
         private IRestResponse<T> ExecuteRequest<T>(IRestRequest request) where T : new()
         {
+            request.AddQueryParameter("limit", "1000");
             var response = this._client.Execute<T>(request);
             this.ProcessResponse(response);
             return response;
