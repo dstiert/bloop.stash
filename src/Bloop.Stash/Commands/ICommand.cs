@@ -1,6 +1,6 @@
-﻿using Wox.Stash.Model;
+﻿using Bloop.Stash.Model;
 
-namespace Wox.Stash.Commands
+namespace Bloop.Stash.Commands
 {
     public interface ICommand
     {

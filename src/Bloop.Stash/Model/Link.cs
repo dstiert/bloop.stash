@@ -1,4 +1,4 @@
-﻿namespace Wox.Stash.Model
+﻿namespace Bloop.Stash.Model
 {
     public class Link
     {

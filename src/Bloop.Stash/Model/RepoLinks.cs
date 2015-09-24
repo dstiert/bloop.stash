@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wox.Stash.Model
+namespace Bloop.Stash.Model
 {
     public class RepoLinks
     {

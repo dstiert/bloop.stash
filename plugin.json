@@ -6,7 +6,7 @@
     "Author":"dstiert",
     "Version":"1.0.0.0",
     "Language":"csharp",
-    "Website":"https://bitbucket.org/dstiert/wox.stash",
-    "ExecuteFileName":"Wox.Stash.dll",
+    "Website":"https://bitbucket.org/dstiert/bloop.stash",
+    "ExecuteFileName":"Bloop.Stash.dll",
     "IcoPath":"images\\icon.png"
 }

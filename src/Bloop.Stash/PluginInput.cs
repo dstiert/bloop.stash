@@ -1,6 +1,6 @@
-﻿using Wox.Plugin;
+﻿using Bloop.Plugin;
 
-namespace Wox.Stash
+namespace Bloop.Stash
 {
     public class PluginInput
     {
@@ -9,9 +9,9 @@ namespace Wox.Stash
         public static PluginInput Parse(Query query)
         {
             var cmd = new PluginInput();
-            if(query.ActionParameters.Count > 0)
+            if(!string.IsNullOrEmpty(query.FirstSearch))
             {
-                var projRepo = query.ActionParameters[0].Split('/');
+                var projRepo = query.FirstSearch.Split('/');
                 if(projRepo.Length > 0)
                 {
                     cmd.ProjectKey = projRepo[0];
@@ -22,9 +22,9 @@ namespace Wox.Stash
                 }
             }
 
-            if(query.ActionParameters.Count > 1)
+            if (!string.IsNullOrEmpty(query.SecondSearch))
             {
-                cmd.CommandName = query.ActionParameters[1];
+                cmd.CommandName = query.SecondSearch;
             }
             return cmd;
         }

@@ -2,7 +2,7 @@
 using System.IO;
 using System;
 
-namespace Wox.Stash.Settings
+namespace Bloop.Stash.Settings
 {
     public class PluginSettings
     {

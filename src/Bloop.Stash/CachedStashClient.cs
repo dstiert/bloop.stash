@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Wox.Stash.Model;
+using Bloop.Stash.Model;
 
-namespace Wox.Stash
+namespace Bloop.Stash
 {
     public class CachedStashClient : StashClient
     {

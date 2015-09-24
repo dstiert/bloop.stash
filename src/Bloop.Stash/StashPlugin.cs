@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Windows.Controls;
 using System;
-using Wox.Plugin;
-using Wox.Stash.Settings;
+using Bloop.Plugin;
+using Bloop.Stash.Settings;
 using System.IO;
-using Wox.Stash.Commands;
+using Bloop.Stash.Commands;
 
-namespace Wox.Stash
+namespace Bloop.Stash
 {
     public class StashPlugin : IPlugin, ISettingProvider
     {

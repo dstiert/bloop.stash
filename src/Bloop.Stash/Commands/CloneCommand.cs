@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using System.IO;
-using Wox.Stash.Model;
-using Wox.Stash.Settings;
+using Bloop.Stash.Model;
+using Bloop.Stash.Settings;
 
-namespace Wox.Stash.Commands
+namespace Bloop.Stash.Commands
 {
     [Command]
     public class CloneCommand : ICommand

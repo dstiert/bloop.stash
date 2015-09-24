@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Wox.Stash.Commands
+namespace Bloop.Stash.Commands
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class CommandAttribute : Attribute

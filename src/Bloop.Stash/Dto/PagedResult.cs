@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wox.Stash.Dto
+namespace Bloop.Stash.Dto
 {
     public class PagedResult<T>
     {

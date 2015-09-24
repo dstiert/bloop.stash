@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using RestSharp;
-using Wox.Stash.Dto;
-using Wox.Stash.Model;
+using Bloop.Stash.Dto;
+using Bloop.Stash.Model;
 using System.Net;
 
-namespace Wox.Stash
+namespace Bloop.Stash
 {
     public class StashClient
     {

@@ -1,8 +1,8 @@
-﻿using Wox.Plugin;
-using Wox.Stash.Commands;
-using Wox.Stash.Model;
+﻿using Bloop.Plugin;
+using Bloop.Stash.Commands;
+using Bloop.Stash.Model;
 
-namespace Wox.Stash
+namespace Bloop.Stash
 {
     public class Converter
     {
