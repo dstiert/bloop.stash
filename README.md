@@ -1,3 +1,4 @@
+:x: **ARCHIVED** :x:
 ## About
 Bloop.Stash is a plugin for [Bloop](https://github.com/dstiert/bloop) to interact with Atlassian's [Stash](https://www.atlassian.com/software/stash)
 
